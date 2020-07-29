@@ -1,12 +1,13 @@
 
 class CashRegister
   
-  attr_accessor :total, :discount, :items; :lastitem
+  attr_accessor :total, :discount, :items, :lastitem, :itemArray
  
   
   
   
   def initialize(discount=0)
+    @itemArray = []
     @items = {}
     @discount = discount
     @total = 0 
@@ -17,6 +18,11 @@ class CashRegister
   end
   
   def add_item(title, price, quantity = 1)
+    counter = quantity
+    while counter > 0 
+      @itemArray << title
+      counter -= 1 
+    end
     @items[title] = price
     @total += (price * quantity)
     @lastitem = title
@@ -34,12 +40,13 @@ class CashRegister
   end
   
   def items
-    @items.keys
+    @itemArray
   end
   
   def void_last_transaction
-    total -= @items[@lastitem]
-    @items[@lastitem].delete
-    @total = 0.0 if @items.last == nil 
+
+    @total -= @items[@lastitem]
+    @items.delete(@lastitem)
+    @total = 0.0 if @items.empty?
   end
 end     #ends class 
