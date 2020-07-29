@@ -1,7 +1,7 @@
 
 class CashRegister
   
-  attr_accessor :total, :discount, :items
+  attr_accessor :total, :discount, :items; :lastitem
  
   
   
@@ -19,6 +19,7 @@ class CashRegister
   def add_item(title, price, quantity = 1)
     @items[title] = price
     @total += (price * quantity)
+    @lastitem = title
   end
   
   def apply_discount
@@ -37,8 +38,8 @@ class CashRegister
   end
   
   def void_last_transaction
-    total -= @@items.values.last 
-    @items.last.delete
-    @total = 0.0 if @@items.last == nil 
+    total -= @items[@lastitem]
+    @items[@lastitem].delete
+    @total = 0.0 if @items.last == nil 
   end
 end     #ends class 
