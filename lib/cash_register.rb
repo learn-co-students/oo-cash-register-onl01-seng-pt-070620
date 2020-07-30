@@ -1,9 +1,10 @@
+require 'pry'
 class CashRegister
-  attr_accessor :register, :total, :items, :discount
+  attr_accessor :register, :total, :items, :discount, :price
 
 
 def initialize(discount = 0)
-  @items = {}
+  @items = []
   @discount = discount
   @total = 0
 end
@@ -13,8 +14,9 @@ def total
 end
 
 def add_item(title, price, quantity = 1)
-  @items[title] = price
+  @items << ([title, price] * quantity)
   @total += (price * quantity)
+  @price = (price * quantity)
 end
 
 def apply_discount
@@ -27,14 +29,12 @@ def apply_discount
   end
 end
 
-#def items
- #returns an array containing all items
- #@items.keys
-#end
+def items
+   @items.flatten.select {|x| x.class == String}
+end
 
-#def void_last_transaction
-#subtracts last item from the total
-#returns total as 0.0 if array it empty
-#end
+def void_last_transaction
+    @total -= @price
+  end
 
 end
