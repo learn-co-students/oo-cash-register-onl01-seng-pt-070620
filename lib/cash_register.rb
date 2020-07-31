@@ -1,10 +1,9 @@
-require 'pry'
 
 class CashRegister
   
   attr_accessor :total, :discount, :items
   
-  
+
   # sets an instance variable @total on initialization to zero
   # optionally takes an employee discount on initialization
   
@@ -27,8 +26,9 @@ class CashRegister
  # doesn't forget about the previous total
  
   def add_item ( title, price, quantity = 1)
+    @last_transaction = price * quantity
     @total = @total + (price * quantity)
-      quantity.times do |title| 
+      quantity.times do
         @items << title
       end
   end 
@@ -61,8 +61,8 @@ class CashRegister
 # returns the total to 0.0 if all items have been removed
 
   def void_last_transaction
-    @items.pop
-    @total
+    @total = @total - @last_transaction
+    
   end 
   
 end 
