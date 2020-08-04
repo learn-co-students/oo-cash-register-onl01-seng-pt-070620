@@ -8,13 +8,12 @@ class CashRegister
     @items = []
   end
   
-  def add_item(title, quantity = 1, price)
-    @total = price * quantity + @total
-    quantity.round.times do
-    
-      binding.pry
+  def add_item(title, price, quantity = 1)
+    quantity.times do
       @items << title
     end
+    @last_total = @total
+    @total = price * quantity + @total
   end
   
   def apply_discount
@@ -27,8 +26,8 @@ class CashRegister
     end
   end
   
-  def items
-    @items
+  def void_last_transaction
+    @total = @last_total
   end
   
 end
