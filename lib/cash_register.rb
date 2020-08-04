@@ -9,10 +9,12 @@ class CashRegister
   end
   
   def add_item(title, quantity = 1, price)
-    quantity.round.times do 
+    @total = price * quantity + @total
+    quantity.round.times do
+    
+      binding.pry
       @items << title
     end
-    @total = price * quantity + @total
   end
   
   def apply_discount
