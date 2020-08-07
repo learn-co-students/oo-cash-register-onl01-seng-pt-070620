@@ -26,7 +26,6 @@ class CashRegister
     else
       @last_trans_amt = 0
     end
-    end
     # @last_trans_amt = price * quantity
   end
   
