@@ -45,10 +45,8 @@ class CashRegister
   end
   
   def void_last_transaction
-<<<<<<< HEAD
     @total = @total - @last_trans_amt
     @last_trans_amt
-=======
     self.total -= @last_trans_amt
     # binding.pry
     # binding.pry
@@ -57,6 +55,5 @@ class CashRegister
     # end
     # @total -= @last_trans_amt
     # @total
->>>>>>> 394695ae18b07a6fdb4f22341b64dba6219178c6
   end
 end
