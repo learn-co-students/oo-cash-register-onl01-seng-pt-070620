@@ -46,7 +46,6 @@ class CashRegister
   def void_last_transaction
     @total = @total - @last_trans_amt
     @last_trans_amt
-    self.total -= @last_trans_amt
     # binding.pry
     # binding.pry
     # if @all_items.size == 0
